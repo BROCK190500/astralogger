@@ -15,15 +15,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org' # Hedef npmjs.com!
+          registry-url: 'https://registry.npmjs.org' # İşte npmjs sitesine gönderecek olan gizli sos bu!
 
-      - name: Bağımlılıkları Yükle
+      - name: Bagimliliklari Yukle
         run: npm ci
 
       - name: TypeScript Kodunu Derle (Build)
-        run: npm run build # dist/ klasörünü oluşturan kritik adım!
+        run: npm run build
 
-      - name: npmjs Üzerinde Yayınla
+      - name: npmjs Uzerinde Yayınla
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Ayarlarda tanımladığın şifreli anahtar
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
