@@ -1,0 +1,29 @@
+name: Publish Package to npmjs
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodlari Kopyala
+        uses: actions/checkout@v4
+
+      - name: Node.js Kurulumu
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org' # Hedef npmjs.com!
+
+      - name: Bağımlılıkları Yükle
+        run: npm ci
+
+      - name: TypeScript Kodunu Derle (Build)
+        run: npm run build # dist/ klasörünü oluşturan kritik adım!
+
+      - name: npmjs Üzerinde Yayınla
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Ayarlarda tanımladığın şifreli anahtar
