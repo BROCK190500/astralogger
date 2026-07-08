@@ -7,6 +7,13 @@
   "bin": {
     "astra-logger": "./dist/bin/cli.js"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BROCK10500/astralogger.git"
+  },
   "scripts": {
     "build": "tsc",
     "start": "tsx src/bin/cli.ts",
@@ -18,6 +25,9 @@
   ],
   "author": "Bunyamin Orak",
   "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "tsx": "^4.0.0",
